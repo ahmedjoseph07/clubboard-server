@@ -3,9 +3,12 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import postRoute from './routes/posts.js'
 dotenv.config();
 
 const app = express();
+
+app.use('/posts',postRoute);
 
 app.use(bodyParser.json({limit:"25mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"25mb",extended:true}));
@@ -22,5 +25,7 @@ mongoose.connect(DATABASE_URL)
 .catch((err)=>{
     console.log("Database Error",err.message);
 })
+
+
 
 
